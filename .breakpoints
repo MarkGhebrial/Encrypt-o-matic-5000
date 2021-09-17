@@ -1,0 +1,32 @@
+{
+  "files": {
+    "encryptomatic.py": [
+      {
+        "id": "ea8cfad8-5afd-4e95-ad9e-d5cedac6e225",
+        "line": 15,
+        "version": 1609,
+        "index": 362
+      },
+      {
+        "id": "71e76bd7-4790-4dfa-b417-569fd87dc6e1",
+        "line": 19,
+        "version": 1609,
+        "index": 528
+      },
+      {
+        "id": "93c4d0d6-ee2f-4f9e-bb6f-5206499c9d6d",
+        "line": 30,
+        "version": 1609,
+        "index": 793
+      }
+    ],
+    "main.py": [
+      {
+        "id": "3e13fee7-febc-4861-80f9-dc4eac26aab6",
+        "line": 4,
+        "version": 454,
+        "index": 102
+      }
+    ]
+  }
+}
