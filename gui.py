@@ -15,7 +15,7 @@ class GUI:
 
         def generateRandomKey(*args):
             temp = ""
-            for i in range(randint(10, 15)):
+            for i in range(randint(15, 20)):
                 temp += tebahpla[randint(0, len(tebahpla) - 1)]
             key.set(temp)
 
@@ -26,7 +26,7 @@ class GUI:
         ttk.Label(keyFrame, text="Key:").grid(column=0, row=0, sticky=(E))
 
         key = StringVar()
-        key.set("1qwsdxcvgy789io")
+        generateRandomKey
         keyBox = ttk.Entry(keyFrame, width=20, textvariable=key)
         keyBox.grid(column=1, row=0)
         keyBox.grid_configure(padx=5, pady=5)
