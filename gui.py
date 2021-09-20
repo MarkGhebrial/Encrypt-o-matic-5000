@@ -1,74 +1,79 @@
 from tkinter import *
 from tkinter import ttk
 from encryptomatic import EncryptOMatic
+from alphabet import tebahpla
+from random import randint
 
-def encrypt(*args):
-    encrypted.set(EncryptOMatic(key="MarkGhebrial").encryptString(toEncrypt.get()))
-    toDecrypt.set(encrypted.get())
+class GUI:
+    def __init__ (self, root):
+        def encrypt(*args):
+            encrypted.set(EncryptOMatic(key=key.get()).encryptString(toEncrypt.get()))
+            toDecrypt.set(encrypted.get())
 
-def decrypt(*args):
-    decrypted.set(EncryptOMatic(key="MarkGhebrial").decryptString(toDecrypt.get()))
+        def decrypt(*args):
+            decrypted.set(EncryptOMatic(key=key.get()).decryptString(toDecrypt.get()))
 
-root = Tk()
-root.title("Encypt-o-Matic 5000")
+        def generateRandomKey(*args):
+            temp = ""
+            for i in range(randint(10, 15)):
+                temp += tebahpla[randint(0, len(tebahpla) - 1)]
+            key.set(temp)
 
-encryptFrame = ttk.Frame(root, padding="3 3 12 12")
-encryptFrame.grid(column=0, row=0, sticky=(N, W, E, S))
+        ###########################################################################
+        keyFrame = ttk.Frame(root, padding="3 3 12 12")
+        keyFrame.grid(column=0, row=0)
 
-# Variables
-toEncrypt = StringVar()
-encrypted = StringVar()
+        ttk.Label(keyFrame, text="Key:").grid(column=0, row=0, sticky=(E))
 
-# Row 0
-ttk.Label(encryptFrame, text="Text to encrypt:").grid(column=0, row=0, sticky=(E))
-ttk.Entry(encryptFrame, width=50, textvariable=toEncrypt).grid(column=1, row=0, sticky=(W))
+        key = StringVar()
+        key.set("1qwsdxcvgy789io")
+        keyBox = ttk.Entry(keyFrame, width=20, textvariable=key)
+        keyBox.grid(column=1, row=0)
+        keyBox.grid_configure(padx=5, pady=5)
 
-# Row 1
-ttk.Label(encryptFrame, text="Result:").grid(column=0, row=1, sticky=(E))
-ttk.Label(encryptFrame, textvariable=encrypted).grid(column=1, row=1, sticky=(W))
+        ttk.Button(keyFrame, text="Generate random key", command=generateRandomKey).grid(column=2, row=0)
 
-# Row 3
-ttk.Button(encryptFrame, text="Encrypt", command=encrypt).grid(column=0, row=2)
+        ###########################################################################
+        encryptFrame = ttk.Frame(root, padding="3 3 12 12")
+        encryptFrame.grid(column=0, row=1, sticky=(N, W, E, S))
 
-###########################################################################
-decryptFrame = ttk.Frame(root, padding="3 3 12 12")
-decryptFrame.grid(column=0, row=1, sticky=(N, W, E, S))
+        # Variables
+        toEncrypt = StringVar()
+        encrypted = StringVar()
 
-# Variables
-toDecrypt = StringVar()
-decrypted = StringVar()
+        # Row 0
+        ttk.Label(encryptFrame, text="Text to encrypt:").grid(column=0, row=0, sticky=(E))
+        ttk.Entry(encryptFrame, width=50, textvariable=toEncrypt).grid(column=1, row=0, sticky=(W))
 
-# Row 0
-ttk.Label(decryptFrame, text="Text to decrypt:").grid(column=0, row=0, sticky=(E))
-ttk.Entry(decryptFrame, width=50, textvariable=toDecrypt).grid(column=1, row=0, sticky=(W))
+        # Row 1
+        ttk.Label(encryptFrame, text="Result:").grid(column=0, row=1, sticky=(E))
+        ttk.Label(encryptFrame, textvariable=encrypted).grid(column=1, row=1, sticky=(W))
 
-# Row 1
-ttk.Label(decryptFrame, text="Result:").grid(column=0, row=1, sticky=(E))
-ttk.Label(decryptFrame, textvariable=decrypted).grid(column=1, row=1, sticky=(W))
+        # Row 3
+        ttk.Button(encryptFrame, text="Encrypt", command=encrypt).grid(column=0, row=2)
 
-# Row 3
-ttk.Button(decryptFrame, text="Decrypt", command=decrypt).grid(column=0, row=2)
+        ###########################################################################
+        decryptFrame = ttk.Frame(root, padding="3 3 12 12")
+        decryptFrame.grid(column=0, row=2, sticky=(N, W, E, S))
 
-'''root.columnconfigure(0, weight=1)
-root.rowconfigure(0, weight=1)
+        # Variables
+        toDecrypt = StringVar()
+        decrypted = StringVar()
 
-feet = StringVar()
-feet_entry = ttk.Entry(mainframe, width=7, textvariable=feet)
-feet_entry.grid(column=2, row=1, sticky=(W, E))
+        # Row 0
+        ttk.Label(decryptFrame, text="Text to decrypt:").grid(column=0, row=0, sticky=(E))
+        ttk.Entry(decryptFrame, width=50, textvariable=toDecrypt).grid(column=1, row=0, sticky=(W))
 
-meters = StringVar()
-ttk.Label(mainframe, textvariable=meters).grid(column=2, row=2, sticky=(W, E))
+        # Row 1
+        ttk.Label(decryptFrame, text="Result:").grid(column=0, row=1, sticky=(E))
+        ttk.Label(decryptFrame, textvariable=decrypted).grid(column=1, row=1, sticky=(W))
 
-ttk.Button(mainframe, text="Calculate").grid(column=3, row=3, sticky=W)
+        # Row 3
+        ttk.Button(decryptFrame, text="Decrypt", command=decrypt).grid(column=0, row=2)
 
-ttk.Label(mainframe, text="feet").grid(column=3, row=1, sticky=W)
-ttk.Label(mainframe, text="is equivalent to").grid(column=1, row=2, sticky=E)
-ttk.Label(mainframe, text="meters").grid(column=3, row=2, sticky=W)'''
+        # Add padding
+        for child in encryptFrame.winfo_children(): 
+            child.grid_configure(padx=5, pady=5)
 
-for child in encryptFrame.winfo_children(): 
-    child.grid_configure(padx=5, pady=5)
-
-for child in decryptFrame.winfo_children():
-    child.grid_configure(padx=5, pady=5)
-
-root.mainloop()
+        for child in decryptFrame.winfo_children():
+            child.grid_configure(padx=5, pady=5)
