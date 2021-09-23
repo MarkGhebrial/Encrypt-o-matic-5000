@@ -9,6 +9,7 @@ class GUI:
         def encrypt(*args):
             encrypted.set(EncryptOMatic(key=key.get()).encryptString(toEncrypt.get()))
             toDecrypt.set(encrypted.get())
+            decrypt()
 
         def decrypt(*args):
             decrypted.set(EncryptOMatic(key=key.get()).decryptString(toDecrypt.get()))
